@@ -18,6 +18,15 @@ export function _closest(elem, parentSelector) {
    return null;
 }
 
+
+/*возвращает индекс из хеша в урле*/
+export function GetIndexFromHash(hashValue) {
+   const hash = location.hash;
+   const slideIndex = parseInt(hash.replace(`#${hashValue}`, ''));
+
+   return slideIndex;
+}
+
 export function checkInput(text_from_input) {
    return /[^\s]/gim.test(text_from_input);
 }
