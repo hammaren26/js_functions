@@ -19,6 +19,13 @@ export function _closest(elem, parentSelector) {
 }
 
 
+/* возвращает только цифры из строки */
+export const GetOnlyDigitFromStroke = (str) => {
+   const numberPattern = /\d+/g;
+   return str.match(numberPattern).join('');
+}
+
+
 /*возвращает индекс из хеша в урле*/
 export function GetIndexFromHash(hashValue) {
    const hash = location.hash;
@@ -26,6 +33,13 @@ export function GetIndexFromHash(hashValue) {
 
    return slideIndex;
 }
+
+
+/* проверяет есть ли хавер над текущим элементом */
+export function isHover(e) {
+   return e.parentElement.querySelector(':hover') === e;
+}
+
 
 export function checkInput(text_from_input) {
    return /[^\s]/gim.test(text_from_input);
