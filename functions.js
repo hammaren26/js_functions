@@ -1251,4 +1251,54 @@ export function getAllUrlParams(url) {
 }
 
 
+
+
+/* 
+проверка для input type date со значениями from and to
+
+пример разметки:
+<input type="date" name="" id="date_from">
+<input type="date" name="" id="date_to">
+*/
+
+function checkFormateDifferentDate () {
+    const fromDate = document.getElementById('date_from');
+    const toDate = document.getElementById('date_to');
+
+    fromDate.addEventListener('change', function() {
+        toDate.setAttribute('min', fromDate.value);
+
+        if (new Date(fromDate.value) > new Date(toDate.value)) {
+            ShowError('Дата From Date должна быть меньше или равна дате To Date.');
+            fromDate.value = '';
+        }
+    });
+
+    toDate.addEventListener('change', function() {
+        fromDate.setAttribute('max', toDate.value);
+
+        if (new Date(toDate.value) < new Date(fromDate.value)) {
+            ShowError('Дата To Date должна быть больше или равна дате From Date.');
+            toDate.value = '';
+        }
+    });
+}
+
+/* установить get параметр ключ:значение */
+function setURLSearchParam(key, value) {
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value);
+    window.history.pushState({ path: url.href }, '', url.href);
+
+    return url.search;
+}
+
+/*удалить get параметр по ключу*/
+function deleteURLSearchParam(paramName) {
+    let newUrl = new URL(location.href);
+
+    newUrl.searchParams.delete(paramName);
+    window.history.replaceState({}, document.title, newUrl.href);
+}
+
 //================================================================================================================================================================================================================================================================================================================
