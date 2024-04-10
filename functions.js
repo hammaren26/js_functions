@@ -1261,7 +1261,7 @@ export function getAllUrlParams(url) {
 <input type="date" name="" id="date_to">
 */
 
-function checkFormateDifferentDate () {
+function checkDateInterval () {
     const fromDate = document.getElementById('date_from');
     const toDate = document.getElementById('date_to');
 
@@ -1300,5 +1300,30 @@ function deleteURLSearchParam(paramName) {
     newUrl.searchParams.delete(paramName);
     window.history.replaceState({}, document.title, newUrl.href);
 }
+
+/*получить get параметр по ключу*/
+function getURLSearchParam(paramName) {
+   // Получаем текущий URL адрес страницы
+var urlParams = new URLSearchParams(window.location.search);
+
+// Указываем ключ (имя) параметра, который хотим получить
+var key = paramName;
+
+// Получаем значение GET параметра по ключу
+var paramValue = urlParams.get(key);
+
+return paramValue
+}
+
+
+/* возвращает отступы у элемента в px */
+function getIndentation(selector) {
+   let element = document.querySelector(selector);
+   const value = parseFloat(getComputedStyle(element).paddingRight) +
+                 parseFloat(getComputedStyle(element).marginRight);
+
+   return  value;
+}
+
 
 //================================================================================================================================================================================================================================================================================================================
