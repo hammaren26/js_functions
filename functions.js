@@ -1372,3 +1372,13 @@ function dateValidate(input) {
 
             return true;
         }
+
+
+/* выводим ошибки в global scope */
+function catchGlobalError() {
+   window.onerror = function (message, source, lineno, colno, error) {
+      console.error('Глобальная ошибка:', message, 'в файле:', source, 'на строке:', lineno, 'в столбце:', colno);
+      console.error('Стек ошибки:', error.stack);
+      return true; // предотвращает выполнение стандартного обработчика ошибок
+   };
+}
